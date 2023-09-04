@@ -1,0 +1,47 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Daftar Kontak</h2>
+
+            <% if (message.length !== 0) { %>
+                <div class="alert alert-success" role="alert">
+                 <%= message %>
+                </div>
+              <% } %>
+
+            <a href="/contact/add" class="btn btn-success">Tambah Data Kontak</a>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">No Hp</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <% if (contacts.length === 0) { %>
+                    <tr>
+                        <td colspan="4">
+                            <div class="alert alert-danger" role="alert">
+                            Data Kontak Masih kosong 
+                            </div>
+                        </td>
+                    </tr>  
+                    <% } %>
+                    <% let no = 1 %>
+                    <% contacts.forEach(contact => { %>
+                        <tr>
+                            <th scope="row"><%= no++ %></th>
+                            <td><%= contact.nama %></td>
+                            <td><%= contact.nohp %></td>
+                            <td><a href="/contact/<%= contact.nama %>" class="btn btn-primary"><i class="bi bi-info-circle"></i> Detail</a>
+                            <a href="/contact/delete/<%= contact.nama %>" class="btn btn-danger" onclick="return confirm('Apakah Anda Ingin Menghapus kontak ini ?')"><i class="bi bi-trash3"></i> Hapus</a></td>
+                          </tr>
+                    <% }) %>
+                  
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
